@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Auth;
 
 /*
 |--------------------------------------------------------------------------
@@ -20,3 +21,21 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/getRole', 'Auth\RegisterController@getDataRole')->name('role');
+
+//role controller
+Route::get('/karyawan', function () {
+    return view('role_layouts.karyawan');
+});
+Route::get('/direktur', function () {
+    return view('role_layouts.direktur');
+});
+Route::get('/supervisor', function () {
+    return view('role_layouts.supervisor');
+});
+Route::post('utama/store', 'UtamaController@store')->name('storeFile');
+
+//route export excel
+Route::get('/nasabah', 'DataNasabahController@index');
+Route::get('/nasabah/export_excel', 'DataNasabahController@export_excel');
+Route::post('/nasabah/import_excel', 'DataNasabahController@import_excel');
