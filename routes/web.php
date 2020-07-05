@@ -20,7 +20,7 @@ Route::get('/', function () {
 
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/home', 'DataNasabahController@index')->name('home');
 Route::get('/getRole', 'Auth\RegisterController@getDataRole')->name('role');
 
 //role controller
@@ -36,6 +36,11 @@ Route::get('/supervisor', function () {
 Route::post('utama/store', 'UtamaController@store')->name('storeFile');
 
 //route export excel
-Route::get('/nasabah', 'DataNasabahController@index');
-Route::get('/nasabah/export_excel', 'DataNasabahController@export_excel');
-Route::post('/nasabah/import_excel', 'DataNasabahController@import_excel');
+Route::get('/nasabah', 'DataNasabahController@index')->name('nasabah');
+Route::get('/nasabah/export_excel', 'DataNasabahController@export_excel')->name('nasabahExport');
+Route::post('/nasabah/import_excel', 'DataNasabahController@import_excel')->name('nasabahImport');
+Route::get('/nasabah/{id}/edit', 'DataNasabahController@edit')->name('edit');
+Route::put('/nasabah/{id}', 'DataNasabahController@update')->name('update');
+Route::get('/nasabah/create', 'DataNasabahController@create')->name('create');
+Route::post('/nasabah/store', 'DataNasabahController@store')->name('store');
+Route::get('/nasabah/delete/{id}', 'DataNasabahController@delete')->name('delete');
